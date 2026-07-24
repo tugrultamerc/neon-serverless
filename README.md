@@ -1,5 +1,7 @@
 # neon-serverless
 
+[![PyPI](https://img.shields.io/pypi/v/neon-serverless)](https://pypi.org/project/neon-serverless/)
+
 Unofficial **Python** serverless Postgres driver for [Neon](https://neon.tech) — SQL over HTTP, sync and async. Neon ships an official driver for JavaScript/TypeScript ([`@neondatabase/serverless`](https://github.com/neondatabase/serverless)); this is a community Python counterpart, not affiliated with or endorsed by Neon, Inc.
 
 Instead of opening a TCP connection and speaking the Postgres wire protocol, every query is a single HTTPS request to Neon's SQL-over-HTTP endpoint. That makes it a great fit for:
@@ -15,6 +17,8 @@ No libpq, no compiled extensions — the only dependency is `httpx`.
 ```bash
 pip install neon-serverless
 ```
+
+On PyPI: https://pypi.org/project/neon-serverless/
 
 ## Quickstart
 
