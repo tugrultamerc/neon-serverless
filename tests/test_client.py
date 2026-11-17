@@ -160,3 +160,9 @@ async def test_async_transaction():
     async with neon_async(CONN, transport=httpx.MockTransport(handler)) as sql:
         results = await sql.transaction([("SELECT 1", None)])
     assert len(results) == 1
+
+
+def test_non_json_200_raises_neon_db_error():
+    db = neon(CONN, transport=make_transport(lambda r: httpx.Response(200, text="<html>")))
+    with pytest.raises(NeonDbError):
+        db("select 1")

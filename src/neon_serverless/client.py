@@ -78,7 +78,13 @@ def _shape_result(
 
 def _check_response(resp: httpx.Response) -> Dict[str, Any]:
     if resp.status_code == 200:
-        return resp.json()
+        try:
+            return resp.json()
+        except ValueError:
+            raise NeonDbError(
+                f"invalid JSON in server response: {resp.text[:500]}",
+                status=resp.status_code,
+            ) from None
     try:
         payload = resp.json()
     except Exception:
